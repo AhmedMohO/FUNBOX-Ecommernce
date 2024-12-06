@@ -30,19 +30,19 @@ export class AuthManager {
         return false;
     }
     updateHeader() {
-        const signInElements = document.querySelectorAll('.sign-in');
+        const signInElements = document.querySelectorAll('.sign-in span');
         const dropdownMenu1 = document.getElementById('dropdownMenu1');
         const username = localStorage.getItem('currentUser');
         signInElements.forEach((element) => {
             if (username) {
-                element.innerHTML = `<i style="margin-right: 5px;" class="fa-regular fa-user"></i> Hello, ${username}`;
+                element.textContent = `Hello, ${username}`;
                 element.addEventListener('click', this.toggleDropdownMenu1);
                 if (dropdownMenu1) {
                     dropdownMenu1.style.display = 'none';
                 }
             }
             else {
-                element.innerHTML = '<i style="margin-right: 5px;" class="fa-regular fa-user"></i> Login/Register';
+                element.textContent = 'Login/Register';
                 element.removeEventListener('click', this.toggleDropdownMenu1);
                 if (dropdownMenu1) {
                     dropdownMenu1.style.display = 'none';

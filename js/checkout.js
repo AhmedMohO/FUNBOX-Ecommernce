@@ -11,11 +11,10 @@ var _a;
 import { getProduct } from "../data/product.js";
 import { cart, resetStorage } from "../data/cart.js";
 import { convMoney } from "../data/money.js";
-import { getCurrencySymbol, initializeCurrency, updatePriceElement } from "../data/currency.js";
+import { getCurrencySymbol, updatePriceElement } from "../data/currency.js";
 import { addOrder } from "../data/orders.js";
 import { AuthManager } from "../data/authmanager.js";
 import { getProductPriceInfo } from "../data/product.js";
-initializeCurrency();
 function createPopup(innerHTML) {
     const popupDiv = document.createElement('div');
     popupDiv.classList.add('more-info');

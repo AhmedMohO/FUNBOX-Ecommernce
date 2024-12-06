@@ -1,8 +1,7 @@
 import { products, getProduct, getProductPriceInfo } from "../data/product.js";
 import { cart } from "../data/cart.js";
 import { renderOrderSummray, renderPaymentSummary } from "./global.js";
-import { getCurrencySymbol, updateAllPrices, initializeCurrency } from "../data/currency.js";
-initializeCurrency();
+import { getCurrencySymbol, updateAllPrices } from "../data/currency.js";
 // generate cards to be put inside swiper
 export function createProductHTML(product) {
     const priceInfo = getProductPriceInfo(product);
@@ -63,24 +62,10 @@ function updateProducts() {
     setupQuickView();
     setupAddToCart();
 }
-// Function to filter and display discounted products
-// function displayDiscountedProducts(products: any[]): void {
-// 	const discountedProducts = products.filter(product =>
-// 		product.discountPercentage && product.discountPercentage > 0
-// 	);
-// 	const swiperWrapper = document.querySelector('.hot-swiper');
-// 	if (swiperWrapper) {
-// 		swiperWrapper.innerHTML = '';
-// 		const productsHTML = discountedProducts
-// 			.map(product => createProductHTML(product))
-// 			.join('');
-// 		swiperWrapper.innerHTML = productsHTML;
-// 	}
-// }
 function displayFirstSixProducts(products) {
     const latestDiv = document.querySelector('.latest-deal .latest-products');
     if (latestDiv) {
-        const firstSixProducts = products.slice(0, 8);
+        const firstSixProducts = products.slice(-8);
         const productsHTML = firstSixProducts
             .map(product => createProductHTML(product))
             .join('');
@@ -177,6 +162,11 @@ export function setupQuickViewAddToCart(quickViewDiv) {
             console.error('Product ID is missing');
             return;
         }
+        const matchingproduct = getProduct(productId);
+        if (!matchingproduct) {
+            console.error('matchingproduct not found');
+            return;
+        }
         const quantityInput = quickViewDiv.querySelector('.quantity-input-d');
         if (!quantityInput) {
             console.error('Quantity input not found');
@@ -184,7 +174,7 @@ export function setupQuickViewAddToCart(quickViewDiv) {
         }
         let quantity = Math.max(1, Math.min(100, Number(quantityInput.value)));
         quantityInput.value = quantity.toString();
-        cart.addToCart(productId, quantity);
+        cart.addToCart(productId, quantity, matchingproduct.priceCents);
         cart.updateCartQuantity();
         renderOrderSummray();
         renderPaymentSummary();
@@ -201,7 +191,10 @@ export function setupAddToCart() {
             const productId = button.getAttribute('data-product-id');
             if (!productId)
                 return;
-            cart.addToCart(productId, 1);
+            const matchingproduct = getProduct(productId);
+            if (!matchingproduct)
+                return;
+            cart.addToCart(productId, 1, matchingproduct.priceCents);
             cart.updateCartQuantity();
             renderOrderSummray();
             renderPaymentSummary();

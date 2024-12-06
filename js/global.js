@@ -4,15 +4,8 @@ import { convMoney } from "../data/money.js";
 import { getCurrencySymbol, updateAllPrices } from "../data/currency.js";
 import { searchBarCon } from "../data/search.js";
 import { AuthManager, initializeAuth } from '../data/authmanager.js';
+import { initializeCurrency } from "../data/currency.js";
 // global file for all pages
-// categories array for categories hsec2
-// const categories = [
-// 	{ summary: "PC", content: ["Steam Wallet Code", "Valorant"], url: `shop.html?search=` },
-// 	{ summary: "PSN", content: ["PlayStation", "PlayStation Plus"], url: `shop.html?search=` },
-// 	{ summary: "XBOX", content: ["Xbox Game Pass", "Xbox Games"], url: `shop.html?search=` },
-// 	{ summary: "MOBILE", content: ["PUBG Mobile", "Roblox"], url: `shop.html?search=` },
-// 	{ summary: "PROGRAMS", content: ["Wallpaper Engine", "Office 365"], url: `shop.html?search=` },
-// ];
 let htmlHeader = ``;
 let htmlSticky = ``;
 let htmlFooter = ``;
@@ -80,7 +73,11 @@ function generateHeader() {
 					<li><a href="shop.html">Shop</a></li>
 					<li><a href="shopping-cart.html">Cart</a></li>
 					<li><a href="orders.html">Your Orders</a></li>
-					<li><a class="sign-in" href="#">Login/Register</a></li>
+					<li>
+						<div style = "position: relative;">
+							<a class="sign-in" href="#"> <i class="fa-regular fa-user"></i> <span style="margin-left : 5px;"></span></a>
+						</div>
+					</li>
 				</ul>
 				</div>
 				<div class="currency">
@@ -114,7 +111,7 @@ function generateHeader() {
 							<li><a class = "skewBg" href="orders.html">Your Orders</a></li>
 							<li >
 								<div class = "register-wrap" style = "position: relative;">
-									<a class="sign-in skewBg" href="#"> <i class="fa-regular fa-user"></i> Login/Register</a>
+									<a class="sign-in skewBg" href="#"> <i class="fa-regular fa-user"></i> <span style="margin-left: 5px;">Login/Register</span></a>
 									<div id="dropdownMenu1" class="dropdown-menu1">
 										<div class = "register" id="signOut">Sign Out</div>	
 										<a href= "orders.html"class = "register">Your Orders</a>	
@@ -124,10 +121,10 @@ function generateHeader() {
 						</ul>
 						<div class="cart">
 							<i class="fa-solid fa-magnifying-glass"></i>
-							<div class = "cart-container">
+							<a ${(window.location.href.includes("shopping-cart.html") || window.location.href.includes("checkout.html") ? `href ="shopping-cart.html"` : '')} class = "cart-container">
 								<div class = "cart-counter">0</div>
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
-							</div>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -150,7 +147,7 @@ function generateStickyHeader() {
 							<li><a class = "skewBg" href="orders.html">Your Orders</a></li>
 							<li >
 								<div class = "register-wrap" style = "position: relative;">
-									<a class="sign-in skewBg" href="#"> <i class="fa-regular fa-user"></i> Login/Register</a>
+									<a class="sign-in skewBg" href="#"> <i class="fa-regular fa-user"></i> <span style="margin-left: 5px;">Login/Register</span></a>
 								</div>
 							</li>
 						</ul>
@@ -186,9 +183,9 @@ function generateFooter() {
 			</div>
 			<div class="f-sec2">
 				<h4>QUICK LINKS</h4>
-				<a href="#"> Privacy Policy</a>
-				<a href="#">Refund Policy</a>
-				<a href="#">Terms & Conditions </a>
+				<a href="privacy.html"> Privacy Policy</a>
+				<a href="refund.html">Refund Policy</a>
+				<a href="terms.html">Terms & Conditions </a>
 				<a href="orders.html">My Orders</a>
 			</div>
 			<div class="f-sec2">
@@ -229,7 +226,7 @@ function appendHeader() {
     header.innerHTML = generateHeader();
     document.body.prepend(header);
     const stickyHeader = document.createElement("div");
-    stickyHeader.classList.add("sticky-header");
+    stickyHeader.classList.add("sticky-header", "unsticked");
     stickyHeader.innerHTML = generateStickyHeader();
     document.body.prepend(stickyHeader);
     const footer = document.createElement("footer");
@@ -247,32 +244,6 @@ window.addEventListener("scroll", function () {
     stickyHeader.classList.toggle("sticked", window.scrollY > 250);
     stickyHeader.classList.toggle("unsticked", window.scrollY <= 250);
 });
-// generate categories 
-// function generateCategories(categories: { summary: string; content: string[]; url: string }[]) {
-// 	const containers = document.querySelectorAll(".hsec2");
-// 	const listContainer = document.querySelector(".categorys ul") as HTMLUListElement;
-// 	categories.forEach((category) => {
-// 		containers.forEach((container) => {
-// 			const details = document.createElement("details");
-// 			details.innerHTML = `
-//                 <summary>${category.summary} <i class="fa-solid fa-caret-down"></i></summary>
-//                 <div class="content">
-//                     <ul>${category.content.map(item => `<li><a href="${category.url}${encodeURIComponent(item)}">${item}</a></li>`).join('')}</ul>
-//                 </div>
-//             `;
-// 			container.appendChild(details);
-// 		});
-// 		const li = document.createElement("li");
-// 		li.innerHTML = `
-//             <button>${category.summary} <i class="fa-solid fa-angle-right"></i></button>
-//             <ul class="sub-menu">
-//                 <div>${category.content.map(item => `<li><a href="${category.url}${encodeURIComponent(item)}">${item}</a></li>`).join('')}</div>
-//             </ul>
-//         `;
-// 		listContainer.prepend(li);
-// 	});
-// }
-// generateCategories(categories);
 // generate aside OrderSummray for all pages
 export function renderOrderSummray() {
     let cartSummHTML = "";
@@ -347,6 +318,7 @@ export function renderOrderSummray() {
             }
             renderPaymentSummary();
             renderOrderSummray();
+            generateToast('rgb(213 19 19)');
         });
     });
     // update product quantity
@@ -518,37 +490,6 @@ document.addEventListener('keydown', (e) => {
 searchBar.addEventListener('click', (e) => {
     e.stopPropagation();
 });
-// manage dropDownButtons for nav
-// const dropDownButtons = document.querySelectorAll<HTMLButtonElement>("nav ul button");
-// const subMenus = document.querySelectorAll<HTMLDivElement>(".sub-menu");
-// dropDownButtons.forEach((button, index) => {
-// 	button.addEventListener("click", function () {
-// 		const isAlreadyActive = subMenus[index].classList.contains("show");
-// 		subMenus.forEach((menu, menuIndex) => {
-// 			const isCurrentMenu = menuIndex === index && !isAlreadyActive;
-// 			menu.classList.toggle("show", isCurrentMenu);
-// 			dropDownButtons[menuIndex].classList.toggle("show", isCurrentMenu);
-// 			const icon = dropDownButtons[menuIndex].querySelector("i");
-// 			if (icon) icon.classList.toggle("rotate", isCurrentMenu);
-// 		});
-// 	});
-// });
-// overlay.addEventListener("click", () => {
-// 	subMenus.forEach((menu, index) => {
-// 		menu.classList.remove("show");
-// 		dropDownButtons[index].classList.remove("show");
-// 		const icon = dropDownButtons[index].querySelector("i");
-// 		if (icon) icon.classList.remove("rotate");
-// 	});
-// });
-// open detail on hover maybe not the best choice i should replace details
-document.querySelectorAll("details").forEach((details) => {
-    const summary = details.querySelector("summary");
-    if (summary) {
-        details.addEventListener("mouseenter", () => details.setAttribute("open", "true"));
-        details.addEventListener("mouseleave", () => details.removeAttribute("open"));
-    }
-});
 // make searchbar work
 searchBarCon();
 // make taost Notification appear
@@ -584,9 +525,10 @@ function hideToast() {
     clearTimeout(timer1);
     clearTimeout(timer2);
 }
-export function generateToast() {
+export function generateToast(checkColor) {
     if (!toast)
         return;
+    document.querySelector('.toast .toast-content .check').style.backgroundColor = `${checkColor}`;
     toast.classList.add("active");
     progress === null || progress === void 0 ? void 0 : progress.classList.add("active");
     clearTimeout(timer1);
@@ -626,3 +568,4 @@ function setupHeaderEventListeners() {
     });
 }
 document.addEventListener('DOMContentLoaded', initializeHeaderWithAuth);
+initializeCurrency();

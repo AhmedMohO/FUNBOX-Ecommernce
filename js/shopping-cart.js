@@ -2,8 +2,7 @@ import { getProduct, getProductPriceInfo } from "../data/product.js";
 import { cart } from "../data/cart.js";
 import { convMoney } from "../data/money.js";
 import { renderOrderSummray } from "./global.js";
-import { getCurrencySymbol, updateAllPrices, initializeCurrency } from "../data/currency.js";
-initializeCurrency();
+import { getCurrencySymbol, updateAllPrices } from "../data/currency.js";
 // generate cart table html
 function createCartItemHTML(cartItem, product) {
     if (product) {
@@ -139,7 +138,6 @@ function renderAll() {
     renderPaymentSummaryCart();
     setupEventListeners();
     renderOrderSummray();
-    renderPaymentSummaryCart();
     updateAllPrices();
 }
 document.addEventListener("DOMContentLoaded", () => {

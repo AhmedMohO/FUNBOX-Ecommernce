@@ -1,8 +1,7 @@
 import { products, getProduct, getProductPriceInfo } from '../data/product.js';
-import { cart } from '../data/cart.js';
 import { initializeCategoryLinks, updateBreadcrumb, categoryMappings } from '../data/breadcrumb.js';
-import { getCurrencySymbol, updateAllPrices, initializeCurrency } from "../data/currency.js";
-import { renderOrderSummray, renderPaymentSummary } from './global.js';
+import { getCurrencySymbol, updateAllPrices } from "../data/currency.js";
+import { setupQuickView, setupAddToCart } from './main.js';
 class ProductListing {
     constructor(productsPerPage = 12) {
         this.productsPerPage = productsPerPage;
@@ -75,7 +74,7 @@ class ProductListing {
         this.displayedProducts = this.filteredProducts.slice(startIndex, startIndex + this.productsPerPage);
     }
     renderProducts(isInitialLoad = false) {
-        const productsContainer = document.querySelector('.products.products-container');
+        const productsContainer = document.querySelector('.products1.products-container');
         const noFound = document.querySelector('.no');
         if (!productsContainer)
             return;
@@ -85,6 +84,9 @@ class ProductListing {
         setTimeout(() => {
             if (this.filteredProducts.length > 0) {
                 productsContainer.innerHTML = this.displayedProducts.map(this.createProductHTML).join('');
+                // Set up event listeners after rendering products
+                setupQuickView();
+                setupAddToCart();
             }
             else {
                 noFound.innerHTML = '<p class="no-found"><i class="fa-solid fa-exclamation"></i> No products were found matching your selection.</p>';
@@ -173,119 +175,6 @@ class ProductListing {
                 }
             }
         }
-        const viewButton = target.closest('.view-button');
-        const addToCartButton = target.closest('.add-to-cart');
-        if (viewButton)
-            this.handleQuickView(viewButton);
-        else if (addToCartButton)
-            this.handleAddToCart(addToCartButton);
-    }
-    handleQuickView(button) {
-        const productId = button.dataset.productId;
-        if (!productId)
-            return;
-        const product = getProduct(productId);
-        if (!product)
-            return;
-        const quickViewDiv = document.createElement('div');
-        quickViewDiv.classList.add('quick-view');
-        quickViewDiv.innerHTML = this.createQuickViewHTML(product);
-        document.body.appendChild(quickViewDiv);
-        this.overlay.classList.add('active');
-        this.setupQuickViewListeners(quickViewDiv);
-        updateAllPrices();
-    }
-    createQuickViewHTML(product) {
-        const priceInfo = getProductPriceInfo(product);
-        return `
-            <button class="close">x</button>
-            <div class="view-product">
-                <img src="${product.image}" alt="${product.name}" />
-                <div class="view-info">
-                    <a href="product-details.html?productId=${product.id}">${product.name}</a>
-                    <div>
-                        ${priceInfo.hasDiscount ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
-            : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
-                    </div>
-                    <h5><strong>Notes:</strong></h5>
-                    <ul>
-                        <li>Sale items are not eligible for returns, exchanges, or refunds.</li>
-                    </ul>
-                    <div ${product.availability ? '' : 'style="display: none;"'} class="input">
-                        <div class="product-quantity-container">
-                            <div class="quantity-container">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" class="quantity-input" value="1" min="1" max="100" />
-                                <button class="quantity-btn plus">+</button>
-                            </div>
-                        </div>
-                        <button class="add-to-cart" data-product-id='${product.id}'>ADD TO CART</button>
-                    </div>
-				    <p style="color: #ff0000; ${product.availability ? 'display: none;' : ''}" >Out Of Stock</p>
-                    <p><strong>Categories:</strong> ${product.type}</p>
-                    <p>
-                        <strong>Share:</strong> 
-                        <i class="fa-brands fa-facebook-f"></i>
-                        <i class="fa-brands fa-x-twitter"></i>
-                        <i class="fa-brands fa-linkedin-in"></i>
-                        <i class="fa-brands fa-whatsapp"></i>
-                        <i class="fa-brands fa-telegram"></i>
-                    </p>
-                </div>
-            </div>
-        `;
-    }
-    setupQuickViewListeners(quickViewDiv) {
-        var _a, _b, _c, _d;
-        const closeQuickView = () => {
-            quickViewDiv.style.opacity = "0";
-            this.overlay.style.opacity = "0";
-            setTimeout(() => {
-                this.overlay.classList.remove('active');
-                quickViewDiv.remove();
-            }, 200);
-        };
-        (_a = quickViewDiv.querySelector('.close')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', closeQuickView);
-        this.overlay.addEventListener('click', closeQuickView);
-        const quantityInput = quickViewDiv.querySelector('.quantity-input');
-        (_b = quickViewDiv.querySelector('.minus')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => this.updateQuantity(quantityInput, -1));
-        (_c = quickViewDiv.querySelector('.plus')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => this.updateQuantity(quantityInput, 1));
-        (_d = quickViewDiv.querySelector('.add-to-cart')) === null || _d === void 0 ? void 0 : _d.addEventListener('click', (e) => this.handleQuickViewAddToCart(e.currentTarget, quantityInput));
-    }
-    updateQuantity(input, change) {
-        input.value = Math.max(1, Math.min(100, Number(input.value) + change)).toString();
-    }
-    handleQuickViewAddToCart(button, quantityInput) {
-        const productId = button.dataset.productId;
-        if (!productId)
-            return;
-        const quantity = Math.max(1, Math.min(100, Number(quantityInput.value)));
-        this.addProductToCart(productId, quantity);
-        this.updateAddToCartButton(button);
-    }
-    handleAddToCart(button) {
-        const productId = button.dataset.productId;
-        if (!productId)
-            return;
-        this.addProductToCart(productId, 1);
-        this.updateAddToCartIcon(button);
-    }
-    addProductToCart(productId, quantity) {
-        cart.addToCart(productId, quantity);
-        cart.updateCartQuantity();
-        renderOrderSummray();
-        renderPaymentSummary();
-    }
-    updateAddToCartButton(button) {
-        button.textContent = 'Added';
-        setTimeout(() => button.textContent = 'Add to Cart', 2000);
-    }
-    updateAddToCartIcon(button) {
-        const icon = button.querySelector('i');
-        if (icon) {
-            icon.className = 'fa-solid fa-check';
-            setTimeout(() => icon.className = 'fa-solid fa-cart-shopping', 2000);
-        }
     }
     changePage(page) {
         this.currentPage = page;
@@ -331,7 +220,6 @@ class ProductListing {
             sortSelect.value = this.sortOrder;
     }
 }
-initializeCurrency();
 document.addEventListener('DOMContentLoaded', () => {
     initializeCategoryLinks();
 });

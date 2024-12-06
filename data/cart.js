@@ -11,6 +11,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 };
 var _Cart_instances, _Cart_localStorageName, _Cart_loadFromStorage;
 import { generateToast } from "../js/global.js";
+import { getProduct, getProductPriceInfo } from "../data/product.js";
 export class Cart {
     constructor(localStorageName) {
         _Cart_instances.add(this);
@@ -25,20 +26,34 @@ export class Cart {
     clearstorage() {
         localStorage.removeItem(__classPrivateFieldGet(this, _Cart_localStorageName, "f"));
     }
-    addToCart(productId, quantity) {
-        quantity = quantity;
+    addToCart(productId, quantity, _priceCents) {
+        // Get the product and its current price info
+        const product = getProduct(productId);
+        if (!product) {
+            console.error('Product not found');
+            return;
+        }
+        // Get the current price info including any discounts
+        const priceInfo = getProductPriceInfo(product);
+        // Use the discounted price if available, otherwise use regular price
+        const effectivePriceCents = priceInfo.hasDiscount
+            ? priceInfo.discountedPriceCents
+            : product.priceCents;
         let matchingItem = this.cartItems.find((cartItem) => productId === cartItem.productId);
         if (matchingItem) {
             matchingItem.quantity += quantity;
+            // Update the price in case it has changed
+            matchingItem.priceCents = effectivePriceCents;
         }
         else {
             this.cartItems.push({
                 productId,
                 quantity,
+                priceCents: effectivePriceCents
             });
         }
         this.savetostorage();
-        generateToast();
+        generateToast('rgb(25,219,7)');
     }
     updateCartQuantity() {
         let cartQuantity = 0;

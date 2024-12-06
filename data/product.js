@@ -51,6 +51,7 @@ export const products = [
         keywords: ["Steam Wallet Code USA USD 20", "Steam", "Wallet"],
         type: "steam",
         availability: true,
+        discountPercentage: 70,
     },
     {
         id: "2",
@@ -94,7 +95,7 @@ export const products = [
         keywords: ["Steam Wallet Code USA USD 100", "Steam", "Wallet"],
         type: "steam",
         availability: true,
-        discountPercentage: 50,
+        discountPercentage: 70,
     },
     {
         id: "6",
@@ -104,7 +105,7 @@ export const products = [
         priceCents: 10000,
         keywords: ["playstation network card 10", "playstation", "psn"],
         type: "playstation",
-        availability: false,
+        availability: true,
     },
     {
         id: "7",
@@ -124,7 +125,7 @@ export const products = [
         priceCents: 4000,
         keywords: ["playstation network card 40", "playstation", "psn"],
         type: "playstation",
-        availability: true,
+        availability: false,
     },
     {
         id: "9",

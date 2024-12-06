@@ -67,8 +67,7 @@ class FormGenerator {
         errorDiv.id = `${field.id}Error`;
         fieldContainer.appendChild(input);
         fieldContainer.appendChild(label);
-        fieldContainer.appendChild(errorDiv);
-        return fieldContainer;
+        return { fieldContainer, errorDiv };
     }
     generateForm(config) {
         const form = document.createElement('form');
@@ -78,7 +77,9 @@ class FormGenerator {
         title.textContent = config.title;
         form.appendChild(title);
         config.fields.forEach(field => {
-            form.appendChild(this.generateField(field));
+            const { fieldContainer, errorDiv } = this.generateField(field);
+            form.appendChild(fieldContainer);
+            form.appendChild(errorDiv);
         });
         const submitButton = document.createElement('button');
         submitButton.type = 'submit';
@@ -128,6 +129,12 @@ class FormGenerator {
         const isValid = this.validateForm(form, formType);
         if (isValid) {
             console.log(`${formType} successful`);
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('registerPassword').value;
+            const authManager = AuthManager.getInstance();
+            if (authManager.register(username, password)) {
+                window.location.href = 'index.html';
+            }
         }
     }
     validateForm(form, formType) {
@@ -176,7 +183,7 @@ class FormGenerator {
         }
     }
     validateEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        return /^[^\s@]+@[^\s@]+\.(com|net)$/.test(email);
     }
     validatePassword(password) {
         return /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password);
@@ -188,16 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const formContainer = document.createElement('div');
     formContainer.className = 'container';
     document.body.appendChild(formContainer);
-    // Create navigation buttons
-    const navButtons = document.createElement('div');
-    navButtons.className = 'nav-buttons';
-    document.body.appendChild(navButtons);
-    ['login', 'register'].forEach(formType => {
-        const button = document.createElement('button');
-        button.className = 'nav-btn';
-        button.textContent = formType.charAt(0).toUpperCase() + formType.slice(1);
-        navButtons.appendChild(button);
-    });
     // Initialize form generator
     const formGenerator = new FormGenerator('formContainer');
     formGenerator.switchForm('register'); // Show register form initially
@@ -208,18 +205,4 @@ document.addEventListener('DOMContentLoaded', () => {
             formGenerator.switchForm((_a = button.textContent) === null || _a === void 0 ? void 0 : _a.toLowerCase());
         });
     });
-    const registerForm = document.getElementById('registerForm');
-    if (registerForm) {
-        registerForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('registerPassword').value;
-            const authManager = AuthManager.getInstance();
-            if (authManager.register(username, password)) {
-                window.location.href = 'index.html';
-            }
-            else {
-            }
-        });
-    }
 });
