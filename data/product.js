@@ -95,7 +95,6 @@ export const products = [
         keywords: ["Steam Wallet Code USA USD 100", "Steam", "Wallet"],
         type: "steam",
         availability: true,
-        discountPercentage: 70,
     },
     {
         id: "6",
