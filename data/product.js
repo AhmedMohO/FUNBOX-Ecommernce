@@ -246,7 +246,8 @@ export const products = [
         priceCents: 2250,
         keywords: ["Free-Fire", "PUBG", "MOBILE", "uc"],
         type: "free fire",
-        availability: false,
+        availability: true,
+        discountPercentage: 80,
     },
 ].map((productDetails) => {
     return new Product(productDetails);
