@@ -172,7 +172,7 @@ export function setupQuickViewAddToCart(quickViewDiv) {
             console.error('Quantity input not found');
             return;
         }
-        let quantity = Math.max(0, Math.min(100, Number(quantityInput.value)));
+        let quantity = Math.max(1, Math.min(100, Number(quantityInput.value)));
         quantityInput.value = quantity.toString();
         cart.addToCart(productId, quantity, matchingproduct.priceCents);
         cart.updateCartQuantity();

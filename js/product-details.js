@@ -32,7 +32,7 @@ function renderproductDetails() {
                 <h1>${matchingproduct.name}</h1>
                 <h3>
                     ${priceInfo.hasDiscount ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
-            : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
+                : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
                 </h3>
                 <h5><strong>Notes:</strong></h5>
                 <ul>
@@ -103,7 +103,6 @@ function renderproductDetails() {
         if (productsContainer)
             productsContainer.innerHTML = htmlContent;
         setupQuickView();
-        setupAddToCart();
         const suggestSwiper = new Swiper(".swiper-3", {
             slidesPerView: 2,
             loop: true,
