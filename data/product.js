@@ -238,16 +238,16 @@ export const products = [
         type: "pubg mobile",
         availability: true,
     },
-    // {
-    // 	id: "20",
-    // 	image: "imgs/freefire-card.png",
-    // 	name: "Free Fire",
-    // 	description: "Free Fire",
-    // 	priceCents: 2250,
-    // 	keywords: ["Free-Fire", "PUBG", "MOBILE", "uc"],
-    // 	type: "free fire",
-    // 	availability: true,
-    // },
+    {
+        id: "20",
+        image: "imgs/freefire-card.png",
+        name: "Free Fire",
+        description: "Free Fire",
+        priceCents: 2250,
+        keywords: ["Free-Fire", "PUBG", "MOBILE", "uc"],
+        type: "free fire",
+        availability: true,
+    },
 ].map((productDetails) => {
     return new Product(productDetails);
 });
