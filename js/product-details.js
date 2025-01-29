@@ -61,7 +61,7 @@ function renderproductDetails() {
                             </button>
                         </div>
                     </div>
-                    <button class="add-to-cart add-to-cart-d" data-product-id="${matchingproduct.id}">
+                    <button class=" add-to-cart-d" data-product-id="${matchingproduct.id}">
                         ADD TO CART
                     </button>
                 </div>
@@ -103,6 +103,7 @@ function renderproductDetails() {
         if (productsContainer)
             productsContainer.innerHTML = htmlContent;
         setupQuickView();
+        setupAddToCart();
         const suggestSwiper = new Swiper(".swiper-3", {
             slidesPerView: 2,
             loop: true,
