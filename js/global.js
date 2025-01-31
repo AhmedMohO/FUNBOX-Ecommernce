@@ -294,7 +294,7 @@ export function renderOrderSummray() {
 								<span class = "js-quantity-label-${matchingproduct.id}">
 								${cartItem.quantity}×</span><h4">
 								${priceInfo.hasDiscount ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
-                    : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
+                        : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
             </h4>
 								</div>
 							</div>
@@ -457,8 +457,11 @@ function toggleActive(open, side) {
         });
     });
 }
-toggleActive(openAside, aside);
-toggleActive(openNav, nav);
+const currentPage = new URL(window.location.href);
+if (currentPage.pathname !== '/shopping-cart.html') {
+    toggleActive(openAside, aside);
+    toggleActive(openNav, nav);
+}
 // open seaarchbar for mobile screens
 const searchBar = document.querySelector(".search-bar");
 const searchInput = document.querySelector(".search-bar1");
