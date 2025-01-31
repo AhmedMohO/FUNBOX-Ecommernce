@@ -91,11 +91,10 @@ export const products = [
         image: "imgs/Steam-Wallet-Code-USA-100-USD-553x800.jpg",
         name: "Steam Wallet Code USD 100$",
         description: "Steam Wallet Code USD 100$",
-        priceCents: 10000,
+        priceCents: 10100,
         keywords: ["Steam Wallet Code USA USD 100", "Steam", "Wallet"],
         type: "steam",
         availability: true,
-discountPercentage: 69,
     },
     {
         id: "6",
