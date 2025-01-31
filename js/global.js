@@ -170,7 +170,7 @@ function generateFooter() {
 			<div class="f-sec1">
 				<a href="index.html"><img src="imgs/logo.png" alt=""/></a>
 				<h5>
-					FUNBOX marketplace the relase etras thats sheets continig passag.
+					FUNBOX marketplace the place where you buy with the best prices.
 				</h5>
 				<h5>
 					Reg. No.: 13451600 <br />128 City Road, London, United Kingdom, EC1V
