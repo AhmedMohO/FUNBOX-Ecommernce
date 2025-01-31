@@ -240,7 +240,7 @@ export const products = [
         priceCents: 2250,
         keywords: ["PUBG-MOBILE 1800 UC (GLOBAL)", "PUBG", "MOBILE", "uc"],
         type: "pubg mobile",
-        availability: true,
+        availability: false,
     },
     {
         id: "20",
