@@ -10,9 +10,18 @@ function generateUUID() {
 }
 // Update the addOrder function to create an Order object
 export function addOrder(cartItems, totalCostCents) {
+    const orderTime = new Date().toISOString();
+    const formattedDate = new Date(orderTime).toLocaleString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
     const newOrder = {
         id: generateUUID(),
-        orderTime: new Date().toISOString(),
+        orderTime: formattedDate,
         products: cartItems.map(item => {
             const product = getProduct(item.productId);
             const priceInfo = product ? getProductPriceInfo(product) : null;
