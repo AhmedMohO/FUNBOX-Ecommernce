@@ -9,9 +9,9 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _Cart_instances, _Cart_localStorageName, _Cart_loadFromStorage;
+var _Cart_instances, _Cart_localStorageName, _Cart_loadFromStorage, _Cart_isInStock;
 import { generateToast } from "../js/global.js";
-import { getProduct, getProductPriceInfo } from "../data/product.js";
+import { getProduct, getProductPriceInfo, getStockInfo } from "../data/product.js";
 export class Cart {
     constructor(localStorageName) {
         _Cart_instances.add(this);
@@ -19,6 +19,7 @@ export class Cart {
         _Cart_localStorageName.set(this, void 0);
         __classPrivateFieldSet(this, _Cart_localStorageName, localStorageName, "f");
         __classPrivateFieldGet(this, _Cart_instances, "m", _Cart_loadFromStorage).call(this);
+        __classPrivateFieldGet(this, _Cart_instances, "m", _Cart_isInStock).call(this);
     }
     savetostorage() {
         localStorage.setItem(__classPrivateFieldGet(this, _Cart_localStorageName, "f"), JSON.stringify(this.cartItems));
@@ -27,13 +28,11 @@ export class Cart {
         localStorage.removeItem(__classPrivateFieldGet(this, _Cart_localStorageName, "f"));
     }
     addToCart(productId, quantity, _priceCents) {
-        // Get the product and its current price info
         const product = getProduct(productId);
         if (!product) {
             console.error('Product not found');
             return;
         }
-        // Get the current price info including any discounts
         const priceInfo = getProductPriceInfo(product);
         // Use the discounted price if available, otherwise use regular price
         const effectivePriceCents = priceInfo.hasDiscount
@@ -72,6 +71,13 @@ export class Cart {
 }
 _Cart_localStorageName = new WeakMap(), _Cart_instances = new WeakSet(), _Cart_loadFromStorage = function _Cart_loadFromStorage() {
     this.cartItems = JSON.parse(localStorage.getItem(__classPrivateFieldGet(this, _Cart_localStorageName, "f")) || "[]");
+}, _Cart_isInStock = function _Cart_isInStock() {
+    const outOfStockItems = getStockInfo();
+    if (outOfStockItems.length > 0) {
+        outOfStockItems.forEach(item => {
+            this.removeCart(item.id);
+        });
+    }
 };
 export const cart = new Cart("cart");
 export function resetStorage() {

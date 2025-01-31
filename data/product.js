@@ -13,6 +13,10 @@ export function getProductPriceInfo(product) {
         discountedPriceCents: product.getDiscountedPriceCents()
     };
 }
+export function getStockInfo() {
+    const outOfStockItems = products.filter(product => product.availability === false);
+    return outOfStockItems;
+}
 export class Product {
     constructor(productDetails) {
         this.id = productDetails.id;
