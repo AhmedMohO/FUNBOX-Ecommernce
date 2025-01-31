@@ -112,7 +112,7 @@ export function setupQuickView() {
 									<button class="quantity-btn" onclick="this.previousElementSibling.stepUp()">+</button>
 								</div>
 							</div>
-							<button class="add-to-cart add-to-cart-d" data-product-id='${matchingProduct.id}'>ADD TO CART</button>
+							<button class="add-to-cart-d" data-product-id='${matchingProduct.id}'>ADD TO CART</button>
 						</div>
 						<p style="color: #ff0000; ${matchingProduct.availability ? 'display: none;' : ''}" >Out Of Stock</p>
 						<p><strong>Categories:</strong> ${matchingProduct.type}</p>
