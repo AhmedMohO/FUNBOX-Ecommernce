@@ -12,7 +12,7 @@ const availableCurrencies = {
     usd: { symbol: "USD$", conversionRate: 1 },
     egp: { symbol: "EGP", conversionRate: 49.76 }
 };
-let currentCurrency = "egp";
+let currentCurrency = "usd";
 export function getCurrencySymbol() {
     return availableCurrencies[currentCurrency].symbol;
 }
@@ -76,7 +76,7 @@ export function setupCurrencyDropdowns() {
             });
         }
     });
-    const storedCurrency = localStorage.getItem("currency") || "egp";
+    const storedCurrency = localStorage.getItem("currency") || "usd";
     changeCurrency(storedCurrency);
 }
 export function initializeCurrency() {
