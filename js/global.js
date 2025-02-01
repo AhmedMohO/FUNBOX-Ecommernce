@@ -460,8 +460,8 @@ function toggleActive(open, side) {
 const currentPage = new URL(window.location.href);
 if (currentPage.pathname !== '/shopping-cart.html') {
     toggleActive(openAside, aside);
-    toggleActive(openNav, nav);
 }
+toggleActive(openNav, nav);
 // open seaarchbar for mobile screens
 const searchBar = document.querySelector(".search-bar");
 const searchInput = document.querySelector(".search-bar1");
