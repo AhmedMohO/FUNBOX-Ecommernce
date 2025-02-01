@@ -204,7 +204,7 @@ export const products = [
     },
     {
         id: "16",
-        image: "imgs/pubg-60-430x602.avif.avif",
+        image: "imgs/pubg-60-430x602.avif",
         name: "PUBG MOBILE 60 UC (GLOBAL)",
         description: "PUBG MOBILE 60 UC (GLOBAL)",
         priceCents: 90,
@@ -214,7 +214,7 @@ export const products = [
     },
     {
         id: "17",
-        image: "imgs/pubg-325-430x605.avif.avif",
+        image: "imgs/pubg-325-430x605.avif",
         name: "PUBG MOBILE 325 UC (GLOBAL)",
         description: "PUBG MOBILE 325 UC (GLOBAL)",
         priceCents: 450,
@@ -224,7 +224,7 @@ export const products = [
     },
     {
         id: "18",
-        image: "imgs/pubg-660-430x602.avif.avif",
+        image: "imgs/pubg-660-430x602.avif",
         name: "PUBG MOBILE 660 UC (GLOBAL)",
         description: "PUBG MOBILE 660 UC (GLOBAL)",
         priceCents: 900,
@@ -234,7 +234,7 @@ export const products = [
     },
     {
         id: "19",
-        image: "imgs/pubg-1800-430x603.avif.avif",
+        image: "imgs/pubg-1800-430x603.avif",
         name: "PUBG MOBILE 1800 UC (GLOBAL)",
         description: "PUBG MOBILE 1800 UC (GLOBAL)",
         priceCents: 2250,
