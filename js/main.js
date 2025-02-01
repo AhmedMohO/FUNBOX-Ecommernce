@@ -224,21 +224,6 @@ function generateFeaturedCategories() {
 if (featuredCategories) {
     generateFeaturedCategories();
 }
-// active and setting swipers
-const swiper = new Swiper(".swiper-1", {
-    effect: "fade",
-    slidesPerView: 1,
-    loop: true,
-    autoplay: {
-        pauseOnMouseEnter: true,
-        delay: 3000,
-    },
-    speed: 1000,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-});
 // handle more than one swiper 3
 let swiperInstances = [];
 function initializeSwipers() {
@@ -257,25 +242,43 @@ function initializeSwipers() {
     });
 }
 updateProducts();
-const swiper3 = new Swiper(".swiper-4", {
-    slidesPerView: 1,
-    loop: true,
-    breakpoints: {
-        500: {
-            slidesPerView: 3,
-            spaceBetween: 10,
+const currentPage = new URL(window.location.href);
+if (currentPage.pathname === '/index.html' || currentPage.pathname === '/') {
+    // active and setting swipers
+    const swiper = new Swiper(".swiper-1", {
+        effect: "fade",
+        slidesPerView: 1,
+        loop: true,
+        autoplay: {
+            pauseOnMouseEnter: true,
+            delay: 3000,
         },
-    },
-    autoplay: {
-        pauseOnMouseEnter: true,
-        delay: 3000,
-    },
-    speed: 1000,
-    navigation: {
-        nextEl: "#next3",
-        prevEl: "#prev3",
-    },
-});
+        speed: 1000,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+    const swiper3 = new Swiper(".swiper-4", {
+        slidesPerView: 1,
+        loop: true,
+        breakpoints: {
+            500: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
+        },
+        autoplay: {
+            pauseOnMouseEnter: true,
+            delay: 3000,
+        },
+        speed: 1000,
+        navigation: {
+            nextEl: "#next3",
+            prevEl: "#prev3",
+        },
+    });
+}
 // const swiper4 = new Swiper(".swiper-5", {
 // 	slidesPerView: 2,
 // 	loop: true,
