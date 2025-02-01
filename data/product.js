@@ -48,7 +48,7 @@ export class Product {
 export const products = [
     {
         id: "1",
-        image: "imgs/Steam-Wallet-Code-USA-5-USD-553x800.jpg",
+        image: "imgs/Steam-Wallet-Code-USA-5-USD-553x800.avif",
         name: "Steam Wallet Code USD 5$",
         description: "Steam Wallet Code USD 5$",
         priceCents: 500,
@@ -59,7 +59,7 @@ export const products = [
     },
     {
         id: "2",
-        image: "imgs/Steam-Wallet-Code-USA-10-USD-553x800.jpg",
+        image: "imgs/Steam-Wallet-Code-USA-10-USD-553x800.avif",
         name: "Steam Wallet Code USD 10$",
         description: "Steam Wallet Code USD 10$",
         priceCents: 1000,
@@ -70,7 +70,7 @@ export const products = [
     },
     {
         id: "3",
-        image: "imgs/Steam-Wallet-Code-USA-20-USD-553x8001.jpg",
+        image: "imgs/Steam-Wallet-Code-USA-20-USD-553x8001.avif",
         name: "Steam Wallet Code USD 20$",
         description: "Steam Wallet Code USD 20$",
         priceCents: 2000,
@@ -81,7 +81,7 @@ export const products = [
     },
     {
         id: "4",
-        image: "imgs/Steam-Wallet-Code-USA-50-USD-553x800.jpg",
+        image: "imgs/Steam-Wallet-Code-USA-50-USD-553x800.avif",
         name: "Steam Wallet Code USD 50$",
         description: "Steam Wallet Code USD 50$",
         priceCents: 5000,
@@ -92,7 +92,7 @@ export const products = [
     },
     {
         id: "5",
-        image: "imgs/Steam-Wallet-Code-USA-100-USD-553x800.jpg",
+        image: "imgs/Steam-Wallet-Code-USA-100-USD-553x800.avif",
         name: "Steam Wallet Code USD 100$",
         description: "Steam Wallet Code USD 100$",
         priceCents: 10000,
@@ -102,7 +102,7 @@ export const products = [
     },
     {
         id: "6",
-        image: "imgs/playstation-network-card-10.jpg",
+        image: "imgs/playstation-network-card-10.avif",
         name: "playstation network card $10",
         description: "playstation network card $10",
         priceCents: 10000,
@@ -112,7 +112,7 @@ export const products = [
     },
     {
         id: "7",
-        image: "imgs/playstation-network-card-25.jpg",
+        image: "imgs/playstation-network-card-25.avif",
         name: "playstation network card $25",
         description: "playstation network card $25",
         priceCents: 2500,
@@ -122,7 +122,7 @@ export const products = [
     },
     {
         id: "8",
-        image: "imgs/playstation-network-card-40.png",
+        image: "imgs/playstation-network-card-40.avif",
         name: "playstation network card $40",
         description: "playstation network card $40",
         priceCents: 4000,
@@ -132,7 +132,7 @@ export const products = [
     },
     {
         id: "9",
-        image: "imgs/playstation-network-card-50.jpg",
+        image: "imgs/playstation-network-card-50.avif",
         name: "playstation network card $50",
         description: "playstation network card $50",
         priceCents: 5000,
@@ -143,7 +143,7 @@ export const products = [
     },
     {
         id: "10",
-        image: "imgs/playstation-network-card-75.jpg",
+        image: "imgs/playstation-network-card-75.avif",
         name: "playstation network card $75",
         description: "playstation network card $75",
         priceCents: 7500,
@@ -154,7 +154,7 @@ export const products = [
     },
     {
         id: "11",
-        image: "imgs/playstation-network-card-100.jpg",
+        image: "imgs/playstation-network-card-100.avif",
         name: "playstation network card $100",
         description: "playstation network card $100",
         priceCents: 10000,
@@ -164,7 +164,7 @@ export const products = [
     },
     {
         id: "12",
-        image: "imgs/20-EUR-Valorant-Points-430x575.png",
+        image: "imgs/20-EUR-Valorant-Points-430x575.avif",
         name: "20 EUR Valorant Points",
         description: "20 EUR Valorant Points",
         priceCents: 2144,
@@ -174,7 +174,7 @@ export const products = [
     },
     {
         id: "13",
-        image: "imgs/25-EUR-Valorant-Points-430x575.png",
+        image: "imgs/25-EUR-Valorant-Points-430x575.avif",
         name: "25 EUR Valorant Points",
         description: "25 EUR Valorant Points",
         priceCents: 2680,
@@ -184,7 +184,7 @@ export const products = [
     },
     {
         id: "14",
-        image: "imgs/50-EUR-Valorant-Points-430x575.png",
+        image: "imgs/50-EUR-Valorant-Points-430x575.avif",
         name: "50 EUR Valorant Points",
         description: "50 EUR Valorant Points",
         priceCents: 5350,
@@ -194,7 +194,7 @@ export const products = [
     },
     {
         id: "15",
-        image: "imgs/100-EUR-Valorant-Points-430x575.png",
+        image: "imgs/100-EUR-Valorant-Points-430x575.avif",
         name: "100 EUR Valorant Points",
         description: "100 EUR Valorant Points",
         priceCents: 10700,
@@ -204,7 +204,7 @@ export const products = [
     },
     {
         id: "16",
-        image: "imgs/pubg-60-430x602.png.avif",
+        image: "imgs/pubg-60-430x602.avif.avif",
         name: "PUBG MOBILE 60 UC (GLOBAL)",
         description: "PUBG MOBILE 60 UC (GLOBAL)",
         priceCents: 90,
@@ -214,7 +214,7 @@ export const products = [
     },
     {
         id: "17",
-        image: "imgs/pubg-325-430x605.png.avif",
+        image: "imgs/pubg-325-430x605.avif.avif",
         name: "PUBG MOBILE 325 UC (GLOBAL)",
         description: "PUBG MOBILE 325 UC (GLOBAL)",
         priceCents: 450,
@@ -224,7 +224,7 @@ export const products = [
     },
     {
         id: "18",
-        image: "imgs/pubg-660-430x602.png.avif",
+        image: "imgs/pubg-660-430x602.avif.avif",
         name: "PUBG MOBILE 660 UC (GLOBAL)",
         description: "PUBG MOBILE 660 UC (GLOBAL)",
         priceCents: 900,
@@ -234,7 +234,7 @@ export const products = [
     },
     {
         id: "19",
-        image: "imgs/pubg-1800-430x603.png.avif",
+        image: "imgs/pubg-1800-430x603.avif.avif",
         name: "PUBG MOBILE 1800 UC (GLOBAL)",
         description: "PUBG MOBILE 1800 UC (GLOBAL)",
         priceCents: 2250,
@@ -244,7 +244,7 @@ export const products = [
     },
     // {
     //     id: "20",
-    //     image: "imgs/freefire-card.png",
+    //     image: "imgs/freefire-card.avif",
     //     name: "Free Fire",
     //     description: "Free Fire",
     //     priceCents: 2250,

@@ -42,7 +42,7 @@ function changeCurrency(value) {
             const currentImg = currencyDiv.querySelector(".current-img");
             const currentCurrencyElement = currencyDiv.querySelector(".current-currency");
             if (currentImg)
-                currentImg.src = `imgs/${value}.png`;
+                currentImg.src = `imgs/${value}.avif`;
             if (currentCurrencyElement)
                 currentCurrencyElement.textContent = value === `egp` ? `Pounds` : `$`;
         });

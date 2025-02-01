@@ -45,19 +45,19 @@ moreInfoButton === null || moreInfoButton === void 0 ? void 0 : moreInfoButton.a
             <ul>
                 <li>
                     After Opening Your App Select <span class="wallet">More</span>
-                    <img src="imgs/54a2542f-a434-4121-9f00-18479f948b4f.jpg" alt="" />
+                    <img src="imgs/54a2542f-a434-4121-9f00-18479f948b4f.avif" alt="" />
                 </li>
                 <li>
                     Select <span class="vodafone">Vodafone Cash</span>
-                    <img src="imgs/81650d26-234b-4798-bdf4-9dc4caf19932.jpg" alt="" />
+                    <img src="imgs/81650d26-234b-4798-bdf4-9dc4caf19932.avif" alt="" />
                 </li>
                 <li>
                     Select <span class="wallet">Money Transfer</span>
-                    <img src="imgs/4c201f7a-2193-4a5f-81b9-28eb9e15ce77.jpg" alt="" />
+                    <img src="imgs/4c201f7a-2193-4a5f-81b9-28eb9e15ce77.avif" alt="" />
                 </li>
                 <li>
                     Add Number We Provided According To Your <span class="wallet">Wallet</span> And Your Order <span class="wallet">Price</span>
-                    <img src="imgs/c6c619f3-f0a5-4f6e-94d1-579badb9c6f8.jpg" alt="" />
+                    <img src="imgs/c6c619f3-f0a5-4f6e-94d1-579badb9c6f8.avif" alt="" />
                 </li>
             </ul>
         </div>

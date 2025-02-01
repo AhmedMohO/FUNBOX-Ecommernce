@@ -29,7 +29,7 @@ function generateHeader() {
 					<div class="select-selected">
 						<img
 							class="current-img"
-							src="imgs/egp.png"
+							src="imgs/egp.avif"
 							alt=""
 							width="20px"
 							height="20px" />
@@ -37,8 +37,8 @@ function generateHeader() {
 						<i class="fa-solid fa-caret-down"></i>
 					</div>
 					<div class="select-items">
-						<div data-value="egp"><img src="imgs/egp.png" alt="" /> EGP</div>
-						<div data-value="usd"><img src="imgs/usd.png" alt="" /> USD</div>
+						<div data-value="egp"><img src="imgs/egp.avif" alt="" /> EGP</div>
+						<div data-value="usd"><img src="imgs/usd.avif" alt="" /> USD</div>
 					</div>
 				</div>
 				<div class="social">
@@ -84,7 +84,7 @@ function generateHeader() {
 					<div class="select-selected">
 						<img
 							class="current-img"
-							src="imgs/egp.png"
+							src="imgs/egp.avif"
 							alt=""
 							width="20px"
 							height="20px" />
@@ -92,8 +92,8 @@ function generateHeader() {
 						<i class="fa-solid fa-caret-down"></i>
 					</div>
 					<div class="select-items">
-						<div data-value="egp"><img src="imgs/egp.png" alt="" /> Pounds</div>
-						<div data-value="usd"><img src="imgs/usd.png" alt="" /> $</div>
+						<div data-value="egp"><img src="imgs/egp.avif" alt="" /> Pounds</div>
+						<div data-value="usd"><img src="imgs/usd.avif" alt="" /> $</div>
 					</div>
 				</div>
 			</nav>
@@ -101,7 +101,7 @@ function generateHeader() {
 			<div class="container">
 				<div class="hsec1">
 					<button class="nav-button"><i class="fa-solid fa-bars"></i> </button>
-					<a href="index.html"><img src="imgs/logo.png" alt=""/></a>
+					<a href="index.html"><img src="imgs/logo.avif" alt=""/></a>
 
 					<div class="hsec2">
 						<ul>
@@ -137,7 +137,7 @@ function generateStickyHeader() {
 			<div class="container">
 				<div class="hsec1">
 					<button class="nav-button"><i class="fa-solid fa-bars"></i> </button>
-					<a href="index.html"><img src="imgs/logo.png" alt=""/></a>
+					<a href="index.html"><img src="imgs/logo.avif" alt=""/></a>
 
 					<div class="hsec2">
 						<ul>
@@ -168,7 +168,7 @@ function generateFooter() {
     return htmlFooter = `
 		<div class="container">
 			<div class="f-sec1">
-				<a href="index.html"><img src="imgs/logo.png" alt=""/></a>
+				<a href="index.html"><img src="imgs/logo.avif" alt=""/></a>
 				<h5>
 					FUNBOX Marketplace – Your ultimate destination for unbeatable prices and the best deals!
 				</h5>

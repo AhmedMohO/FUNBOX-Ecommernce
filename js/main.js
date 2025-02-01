@@ -215,7 +215,7 @@ function generateFeaturedCategories() {
     uniqueTypes.forEach(type => {
         categoriesHTML += `
             <a href="shop.html?search=${encodeURIComponent(type)}">
-                <img src="imgs/${type.toLowerCase()}.png" alt="${type}"/>
+                <img src="imgs/${type.toLowerCase()}.avif" alt="${type}"/>
             </a>
         `;
     });
