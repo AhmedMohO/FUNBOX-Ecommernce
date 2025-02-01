@@ -27,7 +27,7 @@ function renderproductDetails() {
         const priceInfo = getProductPriceInfo(matchingproduct);
         document.title = matchingproduct.name;
         trackHTML = `
-            <img src="${matchingproduct.image}" alt="" />
+            <img loading="lazy" decoding="async" src="${matchingproduct.image}" alt="" />
             <div class="view-info">
                 <h1>${matchingproduct.name}</h1>
                 <h3>

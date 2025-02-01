@@ -19,7 +19,7 @@ export function createProductHTML(product) {
                 <a href="product-details.html?productId=${product.id}">
 					<span ${product.availability ? 'style="display: none;"' : ''} class = "${product.availability ? '' : 'out-of-stock'}">OUT OF STOCK</span>
 					${priceInfo.hasDiscount ? `<span class="discount">${product.discountPercentage}% OFF</span>` : ''}
-					<img src="${product.image}" alt="${product.name}">
+					<img loading="lazy" decoding="async" src="${product.image}" alt="${product.name}">
 				</a>
             </div>
             <a href="product-details.html?productId=${product.id}"><h4>${product.name}</h4></a>
@@ -215,7 +215,7 @@ function generateFeaturedCategories() {
     uniqueTypes.forEach(type => {
         categoriesHTML += `
             <a href="shop.html?search=${encodeURIComponent(type)}">
-                <img src="imgs/${type.toLowerCase()}.avif" alt="${type}"/>
+                <img loading="lazy" decoding="async" src="imgs/${type.toLowerCase()}.avif" alt="${type}"/>
             </a>
         `;
     });
