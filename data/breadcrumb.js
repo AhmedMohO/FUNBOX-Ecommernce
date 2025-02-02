@@ -39,7 +39,7 @@ export function updateBreadcrumb(productType) {
         return;
     // Create base navigation structure
     const homeLink = document.createElement('a');
-    homeLink.href = 'index.html';
+    homeLink.href = '/';
     homeLink.textContent = 'Home';
     const separator1 = document.createTextNode(' - ');
     const shopLink = document.createElement('a');

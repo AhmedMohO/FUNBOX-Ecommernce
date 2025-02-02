@@ -69,7 +69,7 @@ function generateHeader() {
 				</button>
 				<div>
 				<ul>
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li><a href="shop.html">Shop</a></li>
 					<li><a href="shopping-cart.html">Cart</a></li>
 					<li><a href="orders.html">Your Orders</a></li>
@@ -101,11 +101,11 @@ function generateHeader() {
 			<div class="container">
 				<div class="hsec1">
 					<button class="nav-button"><i class="fa-solid fa-bars"></i> </button>
-					<a href="index.html"><img src="imgs/logo.avif" alt=""/></a>
+					<a href="/"><img src="imgs/logo.avif" alt=""/></a>
 
 					<div class="hsec2">
 						<ul>
-							<li><a class = "skewBg" href="index.html">Home</a></li>
+							<li><a class = "skewBg" href="/">Home</a></li>
 							<li><a class = "skewBg" href="shop.html">Shop</a></li>
 							<li><a class = "skewBg" href="shopping-cart.html">Cart</a></li>
 							<li><a class = "skewBg" href="orders.html">Your Orders</a></li>
@@ -137,11 +137,11 @@ function generateStickyHeader() {
 			<div class="container">
 				<div class="hsec1">
 					<button class="nav-button"><i class="fa-solid fa-bars"></i> </button>
-					<a href="index.html"><img src="imgs/logo.avif" alt=""/></a>
+					<a href="/"><img src="imgs/logo.avif" alt=""/></a>
 
 					<div class="hsec2">
 						<ul>
-							<li><a class = "skewBg" href="index.html">Home</a></li>
+							<li><a class = "skewBg" href="/">Home</a></li>
 							<li><a class = "skewBg" href="shop.html">Shop</a></li>
 							<li><a class = "skewBg" href="shopping-cart.html">Cart</a></li>
 							<li><a class = "skewBg" href="orders.html">Your Orders</a></li>
@@ -168,7 +168,7 @@ function generateFooter() {
     return htmlFooter = `
 		<div class="container">
 			<div class="f-sec1">
-				<a href="index.html"><img src="imgs/logo.avif" alt=""/></a>
+				<a href="/"><img src="imgs/logo.avif" alt=""/></a>
 				<h5>
 					FUNBOX Marketplace – Your ultimate destination for unbeatable prices and the best deals!
 				</h5>

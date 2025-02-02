@@ -133,7 +133,7 @@ class FormGenerator {
             const password = document.getElementById('registerPassword').value;
             const authManager = AuthManager.getInstance();
             if (authManager.register(username, password)) {
-                window.location.href = 'index.html';
+                window.location.href = '/';
             }
         }
     }
