@@ -27,6 +27,21 @@
 		<link rel="stylesheet" href="css/normalize.css" media="print" onload="this.onload=null;this.media='all';"/>
 		<!-- Preload critical CSS with high priority -->
 		<!-- Font Awesome Library -->
+		<!-- Preload Font Awesome fonts to prevent layout shifts -->
+		<link 
+		rel="preload" 
+		href="/webfonts/fa-solid-900.woff2" 
+		as="font" 
+		type="font/woff2" 
+		crossorigin
+		>
+		<link 
+		rel="preload" 
+		href="/webfonts/fa-regular-400.woff2" 
+		as="font" 
+		type="font/woff2" 
+		crossorigin
+		>
 		<link rel="preload" href="css/all.min.css" as="style" fetchpriority="high">
 		<!-- Main Template CSS File -->
 		<link rel="preload" href="css/global.css" as="style" fetchpriority="high">
