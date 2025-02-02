@@ -14,11 +14,20 @@
 		<link rel="preload" as="image" href="imgs/banner_image.avif" type="image/avif">
 		<link rel="preload" as="image" href="imgs/logo.avif" type="image/avif">
 		<!-- google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link 
 			href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
-			rel="stylesheet" media="all"/>
+			rel="stylesheet" 
+			media="print" 
+			onload="this.onload=null;this.media='all'"
+		>
+		<!-- Fallback in case JavaScript is disabled -->
+		<noscript>
+			<link 
+				href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
+				rel="stylesheet">
+		</noscript>
 		<!-- Swiper css -->
 		<link
 			rel="stylesheet"
