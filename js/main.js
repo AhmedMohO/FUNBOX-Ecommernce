@@ -243,7 +243,7 @@ function initializeSwipers() {
 }
 updateProducts();
 const currentPage = new URL(window.location.href);
-if (currentPage.pathname === '/' || currentPage.pathname === 'index.html') {
+if (currentPage.pathname === '/' || currentPage.pathname === '/index.html') {
     // active and setting swipers
     const swiper = new Swiper(".swiper-1", {
         effect: "fade",
