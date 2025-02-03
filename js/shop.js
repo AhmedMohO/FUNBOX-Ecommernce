@@ -111,7 +111,7 @@ class ProductListing {
                         </button>
                     </div>
                     <a href="product-details.html?productId=${product.id}">
-                        <img loading="lazy" decoding="async" src="${product.image}" alt="${product.name}" />
+                        <img decoding="async" src="${product.image}" alt="${product.name}" />
                     </a>
                 </div>
                 <a href="product-details.html?productId=${product.id}">
