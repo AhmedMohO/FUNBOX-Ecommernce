@@ -469,7 +469,6 @@ mSearch.forEach((sIcon) => {
     sIcon.addEventListener("click", () => {
         overlay.classList.add('active');
         searchBar.classList.add('active');
-        searchBar.style.visibility = 'visible';
         setTimeout(() => {
             searchInput.focus();
         }, 50);
