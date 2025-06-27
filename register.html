@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" href="imgs/mini-logo.png" type="image/avif" />
+		<link rel="icon" href="imgs/mini-logo.png" type="image/png" />
 		<!-- Render All Elements Normally -->
 		<link rel="stylesheet" href="css/normalize.css" />
 		<!-- Font Awesome Library -->
@@ -18,59 +18,59 @@
 			href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
 			rel="stylesheet" />
 		<style>
-		.form {
-			width: 40%;
-			min-height: 50vh;
-			opacity: 0;
-			display: none;
-			transition: opacity 0.3s ease-in-out;
-		}
-		@media (max-width: 992px) {
 			.form {
-				width: 90%;
+				width: 40%;
+				min-height: 50vh;
+				opacity: 0;
+				display: none;
+				transition: opacity 0.3s ease-in-out;
 			}
-		}
-		.nav-buttons {
-		display: flex;
-		justify-content: center;
-		gap: 10px;
-		padding-top: 40px;
-		}
+			@media (max-width: 992px) {
+				.form {
+					width: 90%;
+				}
+			}
+			.nav-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 10px;
+				padding-top: 40px;
+			}
 
-        .nav-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            background: #dd4b1a;
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+			.nav-btn {
+				padding: 10px 20px;
+				border: none;
+				border-radius: 4px;
+				background: #dd4b1a;
+				color: white;
+				cursor: pointer;
+				transition: background 0.3s;
+			}
 
-        .nav-btn:hover {
-            background: #9c330f;
-        }
-		.login-register .container{
-			display: flex;
-			justify-content: center;
-		}
+			.nav-btn:hover {
+				background: #9c330f;
+			}
+			.login-register .container {
+				display: flex;
+				justify-content: center;
+			}
 
-        .form.active {
-            opacity: 1;
-            display: block;
-        }
+			.form.active {
+				opacity: 1;
+				display: block;
+			}
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+			h1 {
+				text-align: center;
+				margin-bottom: 30px;
+			}
 
-        .error-message {
-            color: #ff4444;
-            font-size: 14px;
-            margin-bottom: 5px;
-            display: none;
-        }
+			.error-message {
+				color: #ff4444;
+				font-size: 14px;
+				margin-bottom: 5px;
+				display: none;
+			}
 		</style>
 		<title>Register</title>
 	</head>
@@ -80,9 +80,7 @@
 			<button class="nav-btn register">Register</button>
 		</div>
 		<section class="login-register">
-			<div class="container" id="formContainer">
-
-			</div>
+			<div class="container" id="formContainer"></div>
 		</section>
 		<script type="module" src="js/global.js"></script>
 		<script type="module" src="js/register.js"></script>

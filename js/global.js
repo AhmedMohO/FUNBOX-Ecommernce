@@ -5,6 +5,7 @@ import { getCurrencySymbol, updateAllPrices } from "../data/currency.js";
 import { searchBarCon } from "../data/search.js";
 import { AuthManager, initializeAuth } from '../data/authmanager.js';
 import { initializeCurrency } from "../data/currency.js";
+import { generateToast } from "./toast.js";
 // global file for all pages
 let htmlHeader = ``;
 let htmlSticky = ``;
@@ -12,7 +13,7 @@ let htmlFooter = ``;
 let htmlEnd = ``;
 // generate headers
 function generateHeader() {
-    return htmlHeader = `
+	return htmlHeader = `
 	<div class="search-bar">
 		<input
 			placeholder="search for products"
@@ -133,7 +134,7 @@ function generateHeader() {
 }
 // generate sticky header 
 function generateStickyHeader() {
-    return htmlSticky = `
+	return htmlSticky = `
 			<div class="container">
 				<div class="hsec1">
 					<button class="nav-button"><i class="fa-solid fa-bars"></i> </button>
@@ -165,12 +166,12 @@ function generateStickyHeader() {
 }
 // generate footer 
 function generateFooter() {
-    return htmlFooter = `
+	return htmlFooter = `
 		<div class="container">
 			<div class="f-sec1">
 				<a href="/"><img src="imgs/logo.avif" alt=""/></a>
 				<h5>
-					FUNBOX Marketplace – Your ultimate destination for unbeatable prices and the best deals!
+					FUNBOX marketplace the relase etras thats sheets continig passag.
 				</h5>
 				<h5>
 					Reg. No.: 13451600 <br />128 City Road, London, United Kingdom, EC1V
@@ -214,55 +215,55 @@ function generateFooter() {
 }
 // generate development copyright
 function generateEnd() {
-    return htmlEnd = `
+	return htmlEnd = `
 	<a href="#"><strong>FUNBOX Store</strong></a> 2024 Created By
 	<strong><a href="https://www.facebook.com/ahmed.moh232/" target = "_blank">BadHunterN1</a></strong>.
 `;
 }
 // append all headers and footer and end 
 function appendHeader() {
-    const header = document.createElement("header");
-    header.id = `header-container`;
-    header.innerHTML = generateHeader();
-    document.body.prepend(header);
-    const stickyHeader = document.createElement("div");
-    stickyHeader.classList.add("sticky-header", "unsticked");
-    stickyHeader.innerHTML = generateStickyHeader();
-    document.body.prepend(stickyHeader);
-    const footer = document.createElement("footer");
-    footer.innerHTML = generateFooter();
-    const end = document.createElement("div");
-    end.classList.add("end");
-    end.innerHTML = generateEnd();
-    footer.append(end);
-    document.body.append(footer);
+	const header = document.createElement("header");
+	header.id = `header-container`;
+	header.innerHTML = generateHeader();
+	document.body.prepend(header);
+	const stickyHeader = document.createElement("div");
+	stickyHeader.classList.add("sticky-header", "unsticked");
+	stickyHeader.innerHTML = generateStickyHeader();
+	document.body.prepend(stickyHeader);
+	const footer = document.createElement("footer");
+	footer.innerHTML = generateFooter();
+	const end = document.createElement("div");
+	end.classList.add("end");
+	end.innerHTML = generateEnd();
+	footer.append(end);
+	document.body.append(footer);
 }
 appendHeader();
 // make stickyheader sticky
 window.addEventListener("scroll", function () {
-    const stickyHeader = document.querySelector(".sticky-header");
-    stickyHeader.classList.toggle("sticked", window.scrollY > 250);
-    stickyHeader.classList.toggle("unsticked", window.scrollY <= 250);
+	const stickyHeader = document.querySelector(".sticky-header");
+	stickyHeader.classList.toggle("sticked", window.scrollY > 250);
+	stickyHeader.classList.toggle("unsticked", window.scrollY <= 250);
 });
 // generate aside OrderSummray for all pages
 export function renderOrderSummray() {
-    let cartSummHTML = "";
-    cart.updateCartQuantity();
-    if (cart.cartItems.length === 0) {
-        cartSummHTML += `
+	let cartSummHTML = "";
+	cart.updateCartQuantity();
+	if (cart.cartItems.length === 0) {
+		cartSummHTML += `
 			<div class="empty-cart">
 				<h5>No products in the cart.</h5>
 				<button><a href="shop.html">Return To Shop</a></button>
 			</div>
 		`;
-    }
-    else {
-        cart.cartItems.forEach((cartItem) => {
-            const productId = cartItem.productId;
-            const matchingproduct = getProduct(productId);
-            if (matchingproduct) {
-                const priceInfo = getProductPriceInfo(matchingproduct);
-                cartSummHTML += `
+	}
+	else {
+		cart.cartItems.forEach((cartItem) => {
+			const productId = cartItem.productId;
+			const matchingproduct = getProduct(productId);
+			if (matchingproduct) {
+				const priceInfo = getProductPriceInfo(matchingproduct);
+				cartSummHTML += `
 						<div class="item">
 							<img
 								src="${matchingproduct.image}"
@@ -294,113 +295,113 @@ export function renderOrderSummray() {
 								<span class = "js-quantity-label-${matchingproduct.id}">
 								${cartItem.quantity}×</span><h4">
 								${priceInfo.hasDiscount ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
-                        : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
+						: `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
             </h4>
 								</div>
 							</div>
 							<button class="delete" data-product-id= '${matchingproduct.id}' >x</button>
 						</div>
 			`;
-            }
-        });
-    }
-    document.querySelector(".cart-items").innerHTML =
-        cartSummHTML;
-    // make delete button work 
-    document.querySelectorAll(".delete").forEach((link) => {
-        link.addEventListener("click", () => {
-            const productId = link.dataset.productId;
-            if (productId) {
-                cart.removeCart(productId);
-            }
-            else {
-                console.error("Product ID is undefined");
-            }
-            renderPaymentSummary();
-            renderOrderSummray();
-            generateToast('rgb(213 19 19)');
-        });
-    });
-    // update product quantity
-    document.querySelectorAll(".quantity-input").forEach((link2) => {
-        const updateQuantity = () => {
-            const productId = link2.dataset.productId;
-            let quantity = Number(link2.value);
-            if (quantity > 100) {
-                quantity = 100;
-                link2.value = `100`;
-            }
-            else if (quantity < 1) {
-                quantity = 1;
-                link2.value = `1`;
-            }
-            let matchingItem;
-            cart.cartItems.forEach((cartItem) => {
-                if (productId === cartItem.productId) {
-                    matchingItem = cartItem;
-                }
-            });
-            if (matchingItem) {
-                matchingItem.quantity = quantity;
-                const quantityLabel = (document.querySelector(`.js-quantity-label-${productId}`));
-                quantityLabel.textContent = `${quantity}x`;
-                cart.updateCartQuantity();
-                cart.savetostorage();
-            }
-        };
-        const prevButton = link2.previousElementSibling;
-        const nextButton = link2.nextElementSibling;
-        // addEventListeners
-        if (prevButton) {
-            prevButton.addEventListener("click", () => {
-                updateQuantity();
-                renderOrderSummray();
-                renderPaymentSummary();
-            });
-        }
-        if (nextButton) {
-            nextButton.addEventListener("click", () => {
-                updateQuantity();
-                renderOrderSummray();
-                renderPaymentSummary();
-            });
-        }
-        link2.addEventListener("keydown", (event) => {
-            if (event.key === "Enter") {
-                updateQuantity();
-                renderPaymentSummary();
-                renderOrderSummray();
-            }
-        });
-    });
-    updateAllPrices();
+			}
+		});
+	}
+	document.querySelector(".cart-items").innerHTML =
+		cartSummHTML;
+	// make delete button work 
+	document.querySelectorAll(".delete").forEach((link) => {
+		link.addEventListener("click", () => {
+			const productId = link.dataset.productId;
+			if (productId) {
+				cart.removeCart(productId);
+			}
+			else {
+				console.error("Product ID is undefined");
+			}
+			renderPaymentSummary();
+			renderOrderSummray();
+			generateToast('rgb(213 19 19)');
+		});
+	});
+	// update product quantity
+	document.querySelectorAll(".quantity-input").forEach((link2) => {
+		const updateQuantity = () => {
+			const productId = link2.dataset.productId;
+			let quantity = Number(link2.value);
+			if (quantity > 100) {
+				quantity = 100;
+				link2.value = `100`;
+			}
+			else if (quantity < 1) {
+				quantity = 1;
+				link2.value = `1`;
+			}
+			let matchingItem;
+			cart.cartItems.forEach((cartItem) => {
+				if (productId === cartItem.productId) {
+					matchingItem = cartItem;
+				}
+			});
+			if (matchingItem) {
+				matchingItem.quantity = quantity;
+				const quantityLabel = (document.querySelector(`.js-quantity-label-${productId}`));
+				quantityLabel.textContent = `${quantity}x`;
+				cart.updateCartQuantity();
+				cart.savetostorage();
+			}
+		};
+		const prevButton = link2.previousElementSibling;
+		const nextButton = link2.nextElementSibling;
+		// addEventListeners
+		if (prevButton) {
+			prevButton.addEventListener("click", () => {
+				updateQuantity();
+				renderOrderSummray();
+				renderPaymentSummary();
+			});
+		}
+		if (nextButton) {
+			nextButton.addEventListener("click", () => {
+				updateQuantity();
+				renderOrderSummray();
+				renderPaymentSummary();
+			});
+		}
+		link2.addEventListener("keydown", (event) => {
+			if (event.key === "Enter") {
+				updateQuantity();
+				renderPaymentSummary();
+				renderOrderSummray();
+			}
+		});
+	});
+	updateAllPrices();
 }
 renderOrderSummray();
 // generate aside renderSummray for all pages
 export function renderPaymentSummary() {
-    let subtotalCents = 0;
-    let discountedSubtotalCents = 0;
-    let cartQuantity = 0;
-    cart.cartItems.forEach((cartItem) => {
-        const product = getProduct(cartItem.productId);
-        if (product) {
-            const priceInfo = getProductPriceInfo(product);
-            subtotalCents += priceInfo.originalPriceCents * cartItem.quantity;
-            discountedSubtotalCents += priceInfo.discountedPriceCents * cartItem.quantity;
-            cartQuantity += cartItem.quantity;
-        }
-    });
-    const finalTotalCents = cart.totalDiscount
-        ? Math.round(discountedSubtotalCents * (1 - cart.totalDiscount / 100))
-        : discountedSubtotalCents;
-    const finalTotal = convMoney(finalTotalCents);
-    const paymentSummaryHTML = `
+	let subtotalCents = 0;
+	let discountedSubtotalCents = 0;
+	let cartQuantity = 0;
+	cart.cartItems.forEach((cartItem) => {
+		const product = getProduct(cartItem.productId);
+		if (product) {
+			const priceInfo = getProductPriceInfo(product);
+			subtotalCents += priceInfo.originalPriceCents * cartItem.quantity;
+			discountedSubtotalCents += priceInfo.discountedPriceCents * cartItem.quantity;
+			cartQuantity += cartItem.quantity;
+		}
+	});
+	const finalTotalCents = cart.totalDiscount
+		? Math.round(discountedSubtotalCents * (1 - cart.totalDiscount / 100))
+		: discountedSubtotalCents;
+	const finalTotal = convMoney(finalTotalCents);
+	const paymentSummaryHTML = `
 		<h4>Subtotal:</h4>
             <span class="price current-price" data-original-price-usd-cents="${finalTotalCents}">${finalTotal} ${getCurrencySymbol()}</span>
 	`;
-    document.querySelector(".cart-price").innerHTML =
-        paymentSummaryHTML;
-    updateAllPrices();
+	document.querySelector(".cart-price").innerHTML =
+		paymentSummaryHTML;
+	updateAllPrices();
 }
 renderPaymentSummary();
 // ScrollProgress
@@ -409,31 +410,31 @@ const upi = document.querySelector(".up i");
 let height;
 let resizeObserver;
 function updateHeight() {
-    height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+	height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 }
 function updateScrollProgress() {
-    const scrollTop = document.documentElement.scrollTop;
-    const angle = Math.min((scrollTop / height) * 360, 360);
-    up.style.background = `conic-gradient(white ${angle}deg, transparent 0deg)`;
-    upi.classList.toggle("anim", scrollTop + window.innerHeight >= document.documentElement.scrollHeight);
-    up.style.transform = scrollTop >= 500 ? "scale(1)" : "scale(0)";
+	const scrollTop = document.documentElement.scrollTop;
+	const angle = Math.min((scrollTop / height) * 360, 360);
+	up.style.background = `conic-gradient(white ${angle}deg, transparent 0deg)`;
+	upi.classList.toggle("anim", scrollTop + window.innerHeight >= document.documentElement.scrollHeight);
+	up.style.transform = scrollTop >= 500 ? "scale(1)" : "scale(0)";
 }
 function initScrollProgress() {
-    updateHeight();
-    updateScrollProgress();
-    window.addEventListener("scroll", updateScrollProgress, { passive: true });
-    resizeObserver = new ResizeObserver(() => {
-        updateHeight();
-        updateScrollProgress();
-    });
-    resizeObserver.observe(document.body);
+	updateHeight();
+	updateScrollProgress();
+	window.addEventListener("scroll", updateScrollProgress, { passive: true });
+	resizeObserver = new ResizeObserver(() => {
+		updateHeight();
+		updateScrollProgress();
+	});
+	resizeObserver.observe(document.body);
 }
 initScrollProgress();
 up.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth'
+	});
 });
 // Navigation menu functionality
 const nav = document.querySelector("nav");
@@ -444,133 +445,84 @@ const openAside = document.querySelectorAll(".cart-container");
 const aside = document.querySelector("aside");
 const closeButton = document.querySelectorAll(".close-button");
 function toggleActive(open, side) {
-    open.forEach((bar) => {
-        bar.addEventListener("click", function () {
-            side.classList.add(`${side.tagName.toLowerCase()}-active`);
-            overlay.classList.add("active");
-            const removeActive = () => {
-                side.classList.remove(`${side.tagName.toLowerCase()}-active`);
-                overlay.classList.remove("active");
-            };
-            overlay.addEventListener("click", removeActive);
-            closeButton.forEach(button => button.addEventListener("click", removeActive));
-        });
-    });
+	open.forEach((bar) => {
+		bar.addEventListener("click", function () {
+			side.classList.add(`${side.tagName.toLowerCase()}-active`);
+			overlay.classList.add("active");
+			const removeActive = () => {
+				side.classList.remove(`${side.tagName.toLowerCase()}-active`);
+				overlay.classList.remove("active");
+			};
+			overlay.addEventListener("click", removeActive);
+			closeButton.forEach(button => button.addEventListener("click", removeActive));
+		});
+	});
 }
 const currentPage = new URL(window.location.href);
 if (currentPage.pathname !== '/shopping-cart.html') {
-    toggleActive(openAside, aside);
+	toggleActive(openAside, aside);
+	toggleActive(openNav, nav);
 }
-toggleActive(openNav, nav);
 // open seaarchbar for mobile screens
 const searchBar = document.querySelector(".search-bar");
 const searchInput = document.querySelector(".search-bar1");
 mSearch.forEach((sIcon) => {
-    sIcon.addEventListener("click", () => {
-        overlay.classList.add('active');
-        searchBar.classList.add('active');
-        setTimeout(() => {
-            searchInput.focus();
-        }, 50);
-    });
+	sIcon.addEventListener("click", () => {
+		overlay.classList.add('active');
+		searchBar.classList.add('active');
+		setTimeout(() => {
+			searchInput.focus();
+		}, 50);
+	});
 });
 // Function to close search
 const closeSearch = () => {
-    overlay.classList.remove('active');
-    searchBar.classList.remove('active');
+	overlay.classList.remove('active');
+	searchBar.classList.remove('active');
 };
 // Close when clicking overlay
 overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
-        closeSearch();
-    }
+	if (e.target === overlay) {
+		closeSearch();
+	}
 });
 // Close on escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) {
-        closeSearch();
-    }
+	if (e.key === 'Escape' && overlay.classList.contains('active')) {
+		closeSearch();
+	}
 });
 // Prevent search bar clicks from closing
 searchBar.addEventListener('click', (e) => {
-    e.stopPropagation();
+	e.stopPropagation();
 });
 // make searchbar work
 searchBarCon();
-// make taost Notification appear
-let toast = null;
-let progress = null;
-let timer1;
-let timer2;
-function initializeToast() {
-    const toastHTML = `
-        <div class="toast">
-            <div class="toast-content">
-                <i class="fas fa-solid fa-check check"></i>
-                <div class="message">
-                    <span class="text text-1">Success</span>
-                    <span class="text text-2">Your Cart Has Been Successfully Updated!</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-xmark close"></i>
-            <div class="progress"></div>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', toastHTML);
-    toast = document.querySelector(".toast");
-    progress = document.querySelector(".progress");
-    const closeIcon = document.querySelector(".close");
-    closeIcon === null || closeIcon === void 0 ? void 0 : closeIcon.addEventListener("click", hideToast);
-}
-function hideToast() {
-    toast === null || toast === void 0 ? void 0 : toast.classList.remove("active");
-    setTimeout(() => {
-        progress === null || progress === void 0 ? void 0 : progress.classList.remove("active");
-    }, 300);
-    clearTimeout(timer1);
-    clearTimeout(timer2);
-}
-export function generateToast(checkColor) {
-    if (!toast)
-        return;
-    document.querySelector('.toast .toast-content .check').style.backgroundColor = `${checkColor}`;
-    toast.classList.add("active");
-    progress === null || progress === void 0 ? void 0 : progress.classList.add("active");
-    clearTimeout(timer1);
-    clearTimeout(timer2);
-    timer1 = setTimeout(() => {
-        toast === null || toast === void 0 ? void 0 : toast.classList.remove("active");
-    }, 2000);
-    timer2 = setTimeout(() => {
-        progress === null || progress === void 0 ? void 0 : progress.classList.remove("active");
-    }, 2300);
-}
-document.addEventListener('DOMContentLoaded', initializeToast);
 // handle register and sign in
 function initializeHeaderWithAuth() {
-    const headerContainer = document.getElementById('header-container');
-    if (headerContainer) {
-        initializeAuth();
-        setupHeaderEventListeners();
-    }
+	const headerContainer = document.getElementById('header-container');
+	if (headerContainer) {
+		initializeAuth();
+		setupHeaderEventListeners();
+	}
 }
 function setupHeaderEventListeners() {
-    const signInElements = document.querySelectorAll('.sign-in');
-    const dropdownMenu1 = document.getElementById('dropdownMenu1');
-    signInElements.forEach((element) => {
-        element.addEventListener('click', (event) => {
-            event.preventDefault();
-            const authManager = AuthManager.getInstance();
-            if (authManager.isLoggedIn()) {
-                if (dropdownMenu1) {
-                    dropdownMenu1.style.display === 'flex' ? 'none' : "flex";
-                }
-            }
-            else {
-                window.location.href = 'register.html';
-            }
-        });
-    });
+	const signInElements = document.querySelectorAll('.sign-in');
+	const dropdownMenu1 = document.getElementById('dropdownMenu1');
+	signInElements.forEach((element) => {
+		element.addEventListener('click', (event) => {
+			event.preventDefault();
+			const authManager = AuthManager.getInstance();
+			if (authManager.isLoggedIn()) {
+				if (dropdownMenu1) {
+					dropdownMenu1.style.display === 'flex' ? 'none' : "flex";
+				}
+			}
+			else {
+				window.location.href = 'register.html';
+			}
+		});
+	});
 }
 document.addEventListener('DOMContentLoaded', initializeHeaderWithAuth);
 initializeCurrency();

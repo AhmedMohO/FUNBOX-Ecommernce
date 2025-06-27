@@ -26,8 +26,8 @@ export function createProductHTML(product) {
             <p>${product.description}</p>
             <div style="text-align:center; padding: 10px 0;">
                 ${priceInfo.hasDiscount
-            ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
-            : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
+        ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
+        : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
             </div>
         </div>`;
 }
@@ -49,9 +49,9 @@ function updateProducts() {
     const productTypes = ['steam', 'playstation'];
     const htmlContent = productTypes
         .map(type => {
-            const specificProducts = products.filter(product => product.type === type);
-            return specificProducts.length ? createTypeHTML(type, specificProducts) : '';
-        })
+        const specificProducts = products.filter(product => product.type === type);
+        return specificProducts.length ? createTypeHTML(type, specificProducts) : '';
+    })
         .join('');
     const productsContainer = document.querySelector(".products");
     if (productsContainer) {
@@ -97,8 +97,8 @@ export function setupQuickView() {
 						<a href="product-details.html?productId=${matchingProduct.id}">${matchingProduct.name}</a>
 						<div>
 						${priceInfo.hasDiscount
-                    ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
-                    : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
+                ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
+                : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
 						</div>
 						<h5><strong>Notes:</strong></h5>
 						<ul>

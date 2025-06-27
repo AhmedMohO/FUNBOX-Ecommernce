@@ -14,6 +14,7 @@ export function getProductPriceInfo(product) {
     };
 }
 export function getStockInfo() {
+    // Changed from find to filter to get all out-of-stock items
     const outOfStockItems = products.filter(product => product.availability === false);
     return outOfStockItems;
 }
@@ -28,6 +29,8 @@ export class Product {
         this.keywords = productDetails.keywords;
         this.availability = productDetails.availability;
         this.discountPercentage = productDetails.discountPercentage;
+        this.wid = productDetails.wid;
+        this.high = productDetails.high;
         // Object.assign(this, productDetails);
     }
     getPrice() {
@@ -56,6 +59,8 @@ export const products = [
         type: "steam",
         availability: true,
         discountPercentage: 70,
+        wid: 553,
+        high: 800,
     },
     {
         id: "2",
@@ -99,6 +104,7 @@ export const products = [
         keywords: ["Steam Wallet Code USA USD 100", "Steam", "Wallet"],
         type: "steam",
         availability: true,
+        discountPercentage: 70,
     },
     {
         id: "6",
@@ -108,7 +114,7 @@ export const products = [
         priceCents: 10000,
         keywords: ["playstation network card 10", "playstation", "psn"],
         type: "playstation",
-        availability: false,
+        availability: true,
     },
     {
         id: "7",
@@ -240,18 +246,17 @@ export const products = [
         priceCents: 2250,
         keywords: ["PUBG-MOBILE 1800 UC (GLOBAL)", "PUBG", "MOBILE", "uc"],
         type: "pubg mobile",
-        availability: false,
+        availability: true,
     },
     // {
-    //     id: "20",
-    //     image: "imgs/freefire-card.avif",
-    //     name: "Free Fire",
-    //     description: "Free Fire",
-    //     priceCents: 2250,
-    //     keywords: ["Free-Fire", "PUBG", "MOBILE", "uc"],
-    //     type: "free fire",
-    //     availability: true,
-    //     discountPercentage: 80,
+    // 	id: "20",
+    // 	image: "imgs/freefire-card.avif",
+    // 	name: "Free Fire",
+    // 	description: "Free Fire",
+    // 	priceCents: 2250,
+    // 	keywords: ["Free-Fire", "PUBG", "MOBILE", "uc"],
+    // 	type: "free fire",
+    // 	availability: true,
     // },
 ].map((productDetails) => {
     return new Product(productDetails);

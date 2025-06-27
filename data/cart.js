@@ -10,7 +10,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _Cart_instances, _Cart_localStorageName, _Cart_loadFromStorage, _Cart_isInStock;
-import { generateToast } from "../js/global.js";
+import { generateToast } from "../js/toast.js";
 import { getProduct, getProductPriceInfo, getStockInfo } from "../data/product.js";
 export class Cart {
     constructor(localStorageName) {
@@ -28,11 +28,13 @@ export class Cart {
         localStorage.removeItem(__classPrivateFieldGet(this, _Cart_localStorageName, "f"));
     }
     addToCart(productId, quantity, _priceCents) {
+        // Get the product and its current price info
         const product = getProduct(productId);
         if (!product) {
             console.error('Product not found');
             return;
         }
+        // Get the current price info including any discounts
         const priceInfo = getProductPriceInfo(product);
         // Use the discounted price if available, otherwise use regular price
         const effectivePriceCents = priceInfo.hasDiscount
@@ -74,10 +76,18 @@ _Cart_localStorageName = new WeakMap(), _Cart_instances = new WeakSet(), _Cart_l
 }, _Cart_isInStock = function _Cart_isInStock() {
     const outOfStockItems = getStockInfo();
     if (outOfStockItems.length > 0) {
+        // Loop through out-of-stock items and remove each one using removeCart
         outOfStockItems.forEach(item => {
             this.removeCart(item.id);
         });
     }
+    // if (outOfStockItems.length > 0) {
+    // 	// Remove all out-of-stock items from cart
+    // 	this.cartItems = this.cartItems.filter(cartItem =>
+    // 		!outOfStockItems.some(outOfStockItem => outOfStockItem.id === cartItem.productId)
+    // 	);
+    // }
+    // this.savetostorage();
 };
 export const cart = new Cart("cart");
 export function resetStorage() {

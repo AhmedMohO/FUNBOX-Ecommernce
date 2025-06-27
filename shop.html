@@ -3,32 +3,45 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" href="imgs/mini-logo.png" type="image/avif" />
-		<link rel="preload" as="image" href="imgs/pubg-1800-430x603.avif" type="image/avif">
-		<link rel="preload" as="image" href="imgs/logo.avif" type="image/avif">
+		<link rel="icon" href="imgs/mini-logo.png" type="image/png" />
 		<!-- Render All Elements Normally -->
-		<link rel="stylesheet" href="css/normalize.css" media="print" onload="this.onload=null;this.media='all';"/>
-		<!-- Main Template CSS File -->
-		<!-- Preload critical CSS with high priority -->
-		<link rel="preload" href="css/global.css" as="style" fetchpriority="high">
-        <link rel="preload" href="css/main.css" as="style" fetchpriority="high">
-		<link rel="preload" href="css/cart.css" as="style" fetchpriority="high">
-		<!-- Preload main module -->
-		<link rel="preload" href="js/global.js" as="script" crossorigin>
+		<link
+			rel="stylesheet"
+			href="css/normalize.css"
+			media="print"
+			onload="this.onload=null;this.media='all';" />
 		<!-- Font Awesome Library -->
-		<link rel="stylesheet" href="css/all.min.css"/>
-		<!-- Load the actual stylesheets -->
-		<link rel="stylesheet" href="css/global.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/cart.css"/>
-		<!-- main js file -->
-		<script defer type="module" src="js/global.js"></script>
+		<link
+			rel="stylesheet"
+			href="css/all.min.css"
+			media="print"
+			onload="this.onload=null;this.media='all';" />
+		<!-- Main Template CSS File -->
+		<link rel="stylesheet" href="css/global.css" />
+		<link
+			rel="stylesheet"
+			href="css/main.css"
+			media="print"
+			onload="this.onload=null;this.media='all';" />
+		<link
+			rel="stylesheet"
+			href="css/cart.css"
+			media="print"
+			onload="this.onload=null;this.media='all';" />
+		<link
+			rel="preload"
+			as="image"
+			href="imgs/pubg-1800-430x603.avif"
+			type="image/avif" />
+		<link rel="preload" as="image" href="imgs/logo.avif" type="image/avif" />
 		<!-- google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
-			rel="stylesheet" media="print"/>
+			rel="stylesheet"
+			media="print"
+			onload="this.onload=null;this.media='all';" />
 		<title>Shop</title>
 	</head>
 	<body>
@@ -53,6 +66,7 @@
 				<div id="pagination"></div>
 			</footer>
 		</div>
-		<script async type="module" src="js/shop.js"></script>
+		<script async type="module" src="js/global.js"></script>
+		<script defer type="module" src="js/shop.js"></script>
 	</body>
 </html>

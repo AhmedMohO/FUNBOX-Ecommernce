@@ -27,12 +27,12 @@ function renderproductDetails() {
         const priceInfo = getProductPriceInfo(matchingproduct);
         document.title = matchingproduct.name;
         trackHTML = `
-            <img loading="lazy" decoding="async" src="${matchingproduct.image}" alt="" />
+            <img src="${matchingproduct.image}" alt="" />
             <div class="view-info">
                 <h1>${matchingproduct.name}</h1>
                 <h3>
                     ${priceInfo.hasDiscount ? `<span class="price original-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span><span class="price current-price" data-original-price-usd-cents="${priceInfo.discountedPriceCents}">${priceInfo.discountedPrice} ${getCurrencySymbol()}</span>`
-                : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
+            : `<span class="price current-price" data-original-price-usd-cents="${priceInfo.originalPriceCents}">${priceInfo.originalPrice} ${getCurrencySymbol()}</span>`}
                 </h3>
                 <h5><strong>Notes:</strong></h5>
                 <ul>
@@ -61,7 +61,7 @@ function renderproductDetails() {
                             </button>
                         </div>
                     </div>
-                    <button class=" add-to-cart-d" data-product-id="${matchingproduct.id}">
+                    <button class="add-to-cart-d" data-product-id="${matchingproduct.id}">
                         ADD TO CART
                     </button>
                 </div>
